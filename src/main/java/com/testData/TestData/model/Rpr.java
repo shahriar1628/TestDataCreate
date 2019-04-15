@@ -3,11 +3,17 @@ package com.testData.TestData.model;
 import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"space_name", "charge_type"})
+})
 public class Rpr {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String SpaceName;
+    @Column(name="space_name" , length = 30)
+    private String spaceName;
+    @Column(name="charge_type" , length = 30)
+    private String chargeType ;
 
     public Rpr() {
     }
@@ -21,10 +27,18 @@ public class Rpr {
     }
 
     public String getSpaceName() {
-        return SpaceName;
+        return spaceName;
     }
 
     public void setSpaceName(String spaceName) {
-        SpaceName = spaceName;
+        this.spaceName = spaceName;
+    }
+
+    public String getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(String chargeType) {
+        this.chargeType = chargeType;
     }
 }

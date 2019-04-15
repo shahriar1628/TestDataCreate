@@ -12,9 +12,14 @@ public class RprService {
 
     @Autowired
     private RprRepo rprRepo ;
+    @Autowired
+    private PreqDataService preqDataService ;
 
     public void createOrUpdateRpr(Rpr rpr) {
+        boolean isNew = rpr.getId() ==0 ? true : false ;
         rprRepo.save(rpr) ;
+        if(isNew)
+            preqDataService.createPrequisiteData("rpr",rpr.getId());
     }
 
     public Rpr getRpr(Long id) {

@@ -4,13 +4,20 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"preq_id", "client_id","environment"})
+})
 public class PreqExecutionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
+    @Column(name="preq_id")
     private long preqId;
+    @Column(name="client_id" , length = 10)
     private String clientId;
+    @Column(name="environment" , length = 10)
     private String environment;
     private boolean isPassed ;
     private LocalDateTime creationTime;

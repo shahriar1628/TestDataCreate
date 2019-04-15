@@ -3,11 +3,16 @@ package com.testData.TestData.model;
 import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"type", "data_id"})
+})
 public class PrequisiteData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long preqId;
+    @Column(name="type" , length = 10)
     private String type;
+    @Column(name="data_id")
     private Long dataId;
 
     public PrequisiteData() {
